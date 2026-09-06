@@ -703,3 +703,34 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/interactions")
+def interactions():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    connection = get_connection()
+
+    rows = connection.execute("""
+        SELECT
+            products.product_name,
+            products.category,
+            interactions.interaction_type,
+            COUNT(*) AS times
+        FROM interactions
+        JOIN products
+        ON interactions.product_id = products.product_id
+        GROUP BY
+            products.product_name,
+            products.category,
+            interactions.interaction_type
+        ORDER BY times DESC
+    """).fetchall()
+
+    connection.close()
+
+    return render_template(
+        "interactions.html",
+        interactions=rows
+    )

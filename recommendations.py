@@ -3,19 +3,12 @@ from database import get_connection
 from differential_privacy import add_laplace_noise
 
 
-def get_recommendations(
-    user_id,
-    current_product_id=None,
-    limit=5
-):
+def get_recommendations(user_id, current_product_id=None, limit=5):
 
     connection = get_connection()
 
-    # -----------------------------------------
-    # 1. Get user's complete shopping behaviour
-    # -----------------------------------------
-
-    user_rows = connection.execute("""
+    # Get user's interactions
+    rows = connection.execute("""
         SELECT
             interactions.product_id,
             interactions.interaction_type,
@@ -26,53 +19,62 @@ def get_recommendations(
         WHERE interactions.user_id = ?
     """, (user_id,)).fetchall()
 
-    if not user_rows:
+    if not rows:
         connection.close()
         return []
 
-    # -----------------------------------------
-    # 2. Calculate user's category preference
-    # -----------------------------------------
+    data = [dict(row) for row in rows]
+    df_user = pd.DataFrame(data)
 
-    category_scores = {}
+    # ---------------------------------------------------------
+    # Count user's views by category
+    # ---------------------------------------------------------
 
-    for row in user_rows:
+    view_data = df_user[
+        df_user["interaction_type"] == "view"
+    ]
 
-        category = row["category"]
-        interaction = row["interaction_type"]
-
-        if interaction == "purchase":
-            score = 3
-
-        elif interaction == "add_to_cart":
-            score = 2
-
-        elif interaction == "view":
-            score = 1
-
-        else:
-            score = 0
-
-        category_scores[category] = (
-            category_scores.get(category, 0) + score
-        )
-
-    # Strongest category
-    preferred_category = max(
-        category_scores,
-        key=category_scores.get
+    category_counts = (
+        view_data
+        .groupby("category")
+        .size()
     )
 
-    print("\n================================")
-    print("USER:", user_id)
-    print("CATEGORY SCORES:", category_scores)
-    print("PREFERRED CATEGORY:", preferred_category)
-    print("================================\n")
+    if category_counts.empty:
+        connection.close()
+        return []
 
+    # ---------------------------------------------------------
+    # Apply Differential Privacy
+    # ---------------------------------------------------------
 
-    # -----------------------------------------
-    # 3. Get ONLY products from that category
-    # -----------------------------------------
+    protected_categories = {}
+
+    for category, count in category_counts.items():
+
+        protected_count = add_laplace_noise(
+            count,
+            sensitivity=1,
+            epsilon=2.0
+        )
+
+        protected_categories[category] = max(
+            0,
+            protected_count
+        )
+
+    # ---------------------------------------------------------
+    # Select privacy-protected preferred category
+    # ---------------------------------------------------------
+
+    preferred_category = max(
+        protected_categories,
+        key=protected_categories.get
+    )
+
+    # ---------------------------------------------------------
+    # Get products from preferred category
+    # ---------------------------------------------------------
 
     products = connection.execute("""
         SELECT
@@ -94,32 +96,21 @@ def get_recommendations(
     if not products:
         return []
 
+    # ---------------------------------------------------------
+    # Read Kaggle dataset
+    # ---------------------------------------------------------
 
-    # -----------------------------------------
-    # 4. Load Kaggle dataset
-    # -----------------------------------------
-
-    df = pd.read_csv(
+    dataset = pd.read_csv(
         "Ecommerce_Personalized_Recommendation_Dataset.csv"
     )
 
-
-    # -----------------------------------------
-    # 5. Count product popularity
-    # -----------------------------------------
-
-    product_counts = (
-        df["Product_ID"]
-        .value_counts()
-        .to_dict()
-    )
-
-
-    # -----------------------------------------
-    # 6. Create recommendations
-    # -----------------------------------------
+    product_counts = dataset["Product_ID"].value_counts()
 
     recommendations = []
+
+    # ---------------------------------------------------------
+    # Apply Differential Privacy to product popularity
+    # ---------------------------------------------------------
 
     for product in products:
 
@@ -128,52 +119,33 @@ def get_recommendations(
             0
         )
 
-        # Differential Privacy
-        protected_count = add_laplace_noise(
+        protected_score = add_laplace_noise(
             original_count,
             sensitivity=1,
             epsilon=1.0
         )
 
-        protected_count = max(
+        protected_score = max(
             0,
-            protected_count
+            protected_score
         )
 
         recommendations.append({
-
-            "product_id":
-                product["product_id"],
-
-            "product_name":
-                product["product_name"],
-
-            "category":
-                product["category"],
-
-            "price":
-                product["price"],
-
-            "image":
-                product["image"],
-
-            "recommendation_score":
-                round(protected_count, 2)
+            "product_id": product["product_id"],
+            "product_name": product["product_name"],
+            "category": product["category"],
+            "price": product["price"],
+            "image": product["image"],
+            "recommendation_score": round(
+                protected_score,
+                2
+            )
         })
 
-
-    # -----------------------------------------
-    # 7. Sort by privacy-protected popularity
-    # -----------------------------------------
-
+    # Sort by privacy-protected popularity
     recommendations.sort(
         key=lambda x: x["recommendation_score"],
         reverse=True
     )
-
-
-    # -----------------------------------------
-    # 8. Return top products
-    # -----------------------------------------
 
     return recommendations[:limit]
