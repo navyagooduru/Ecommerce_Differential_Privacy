@@ -58,34 +58,38 @@
 
 
         <table class="analytics-table">
+    <thead>
+        <tr>
+            <th>Category</th>
 
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Original Count</th>
-                    <th>Protected Count</th>
-                </tr>
-            </thead>
+            <th>Viewed</th>
+            <th>DP Protected Views</th>
 
-            <tbody>
+            <th>Added to Cart</th>
+            <th>DP Protected Cart</th>
 
-                {% for item in analytics %}
+            <th>Purchased</th>
+            <th>DP Protected Purchases</th>
+        </tr>
+    </thead>
 
-                <tr>
+    <tbody>
+        {% for item in analytics %}
+        <tr>
+            <td>{{ item.category }}</td>
 
-                    <td>{{ item.category }}</td>
+            <td>{{ item.views }}</td>
+            <td>{{ item.protected_views }}</td>
 
-                    <td>{{ item.original_count }}</td>
+            <td>{{ item.add_to_cart }}</td>
+            <td>{{ item.protected_cart }}</td>
 
-                    <td>{{ item.protected_count }}</td>
-
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
+            <td>{{ item.purchases }}</td>
+            <td>{{ item.protected_purchases }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 
         <div class="privacy-info">

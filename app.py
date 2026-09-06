@@ -752,28 +752,49 @@ def privacy_analytics():
     if "user_id" not in session:
         return redirect(url_for("login"))
 
-    # Show key page every time the page is opened
     if request.method == "GET":
         return render_template("analytics_key.html")
 
-    # Check admin key
     key = request.form.get("key", "")
 
     if key != "ADMIN2026":
         return "Invalid Privacy Analytics Key."
 
-    # Get interaction counts
     connection = get_connection()
 
     rows = connection.execute("""
         SELECT
             products.category,
-            COUNT(*) AS original_count
+
+            SUM(
+                CASE
+                    WHEN interactions.interaction_type = 'view'
+                    THEN 1 ELSE 0
+                END
+            ) AS views,
+
+            SUM(
+                CASE
+                    WHEN interactions.interaction_type = 'add_to_cart'
+                    THEN 1 ELSE 0
+                END
+            ) AS add_to_cart,
+
+            SUM(
+                CASE
+                    WHEN interactions.interaction_type = 'purchase'
+                    THEN 1 ELSE 0
+                END
+            ) AS purchases
+
         FROM interactions
+
         JOIN products
         ON interactions.product_id = products.product_id
+
         GROUP BY products.category
-        ORDER BY original_count DESC
+
+        ORDER BY products.category
     """).fetchall()
 
     connection.close()
@@ -782,18 +803,40 @@ def privacy_analytics():
 
     for row in rows:
 
-        protected_count = add_laplace_noise(
-            row["original_count"],
+        protected_views = add_laplace_noise(
+            row["views"],
+            sensitivity=1,
+            epsilon=2.0
+        )
+
+        protected_cart = add_laplace_noise(
+            row["add_to_cart"],
+            sensitivity=1,
+            epsilon=2.0
+        )
+
+        protected_purchases = add_laplace_noise(
+            row["purchases"],
             sensitivity=1,
             epsilon=2.0
         )
 
         analytics.append({
             "category": row["category"],
-            "original_count": row["original_count"],
-            "protected_count": round(
-                max(0, protected_count),
-                2
+
+            "views": row["views"],
+            "protected_views": round(
+                max(0, protected_views), 2
+            ),
+
+            "add_to_cart": row["add_to_cart"],
+            "protected_cart": round(
+                max(0, protected_cart), 2
+            ),
+
+            "purchases": row["purchases"],
+            "protected_purchases": round(
+                max(0, protected_purchases), 2
             )
         })
 
@@ -801,7 +844,6 @@ def privacy_analytics():
         "privacy_analytics.html",
         analytics=analytics
     )
-
 # =========================================================
 # RUN APPLICATION
 # =========================================================
