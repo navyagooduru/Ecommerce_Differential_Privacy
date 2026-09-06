@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Analytics - ShopSmart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ShopSmart
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+            <a href="/">Products</a>
+            <a href="/cart">Cart</a>
+            <a href="/privacy-analytics">Privacy Analytics</a>
+
+            {% if session.get("user_id") %}
+
+                <a href="/orders">My Orders</a>
+
+                <span>
+                    Hi, {{ session.get("user_name") }}
+                </span>
+
+                <a href="/logout">Logout</a>
+
+            {% else %}
+
+                <a href="/login">Login</a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <div class="analytics-container">
+
+        <h1>Privacy-Preserving Shopping Analytics</h1>
+
+        <p>
+            Comparison between original shopping interactions
+            and Differential Privacy protected counts.
+        </p>
+
+
+        <table class="analytics-table">
+
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Original Count</th>
+                    <th>Protected Count</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in analytics %}
+
+                <tr>
+
+                    <td>{{ item.category }}</td>
+
+                    <td>{{ item.original_count }}</td>
+
+                    <td>{{ item.protected_count }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        <div class="privacy-info">
+
+            <h2>Differential Privacy</h2>
+
+            <p>
+                Laplace noise is added to the original interaction
+                counts to protect individual shopping preferences.
+            </p>
+
+            <p>
+                <strong>Epsilon (ε):</strong> 2.0
+            </p>
+
+            <p>
+                <strong>Sensitivity:</strong> 1
+            </p>
+
+            <p>
+                <strong>Mechanism:</strong> Laplace
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

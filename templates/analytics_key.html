@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Analytics Access - ShopSmart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ShopSmart
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+            <a href="/">Products</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">My Orders</a>
+
+            <span>
+                Hi, {{ session.get("user_name") }}
+            </span>
+
+            <a href="/logout">Logout</a>
+
+        </div>
+
+    </nav>
+
+
+    <div style="
+        max-width: 500px;
+        margin: 100px auto;
+        text-align: center;
+        padding: 40px;
+    ">
+
+        <h1>Privacy Analytics</h1>
+
+        <p>
+            Enter the administrator key to access
+            privacy-preserving analytics.
+        </p>
+
+
+        <form method="POST">
+
+            <input
+                type="password"
+                name="key"
+                placeholder="Enter Admin Key"
+                required
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    margin: 20px 0;
+                    box-sizing: border-box;
+                "
+            >
+
+            <button
+                type="submit"
+                style="
+                    padding: 12px 30px;
+                    cursor: pointer;
+                "
+            >
+                Access Analytics
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from database import get_connection, create_tables
-
+from differential_privacy import add_laplace_noise
 from recommendations import get_recommendations
 
 app = Flask(__name__)
@@ -698,11 +698,8 @@ def logout():
 
 
 # =========================================================
-# RUN APPLICATION
+# INTERACTIONS
 # =========================================================
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
 @app.route("/interactions")
 def interactions():
@@ -721,12 +718,13 @@ def interactions():
         FROM interactions
         JOIN products
         ON interactions.product_id = products.product_id
+        WHERE interactions.user_id = ?
         GROUP BY
             products.product_name,
             products.category,
             interactions.interaction_type
         ORDER BY times DESC
-    """).fetchall()
+    """, (session["user_id"],)).fetchall()
 
     connection.close()
 
@@ -734,3 +732,79 @@ def interactions():
         "interactions.html",
         interactions=rows
     )
+
+
+# =========================================================
+# PRIVACY ANALYTICS
+# =========================================================
+
+# =========================================================
+# PRIVACY ANALYTICS
+# =========================================================
+
+# =========================================================
+# PRIVACY ANALYTICS
+# =========================================================
+
+@app.route("/privacy-analytics", methods=["GET", "POST"])
+def privacy_analytics():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    # Show key page every time the page is opened
+    if request.method == "GET":
+        return render_template("analytics_key.html")
+
+    # Check admin key
+    key = request.form.get("key", "")
+
+    if key != "ADMIN2026":
+        return "Invalid Privacy Analytics Key."
+
+    # Get interaction counts
+    connection = get_connection()
+
+    rows = connection.execute("""
+        SELECT
+            products.category,
+            COUNT(*) AS original_count
+        FROM interactions
+        JOIN products
+        ON interactions.product_id = products.product_id
+        GROUP BY products.category
+        ORDER BY original_count DESC
+    """).fetchall()
+
+    connection.close()
+
+    analytics = []
+
+    for row in rows:
+
+        protected_count = add_laplace_noise(
+            row["original_count"],
+            sensitivity=1,
+            epsilon=2.0
+        )
+
+        analytics.append({
+            "category": row["category"],
+            "original_count": row["original_count"],
+            "protected_count": round(
+                max(0, protected_count),
+                2
+            )
+        })
+
+    return render_template(
+        "privacy_analytics.html",
+        analytics=analytics
+    )
+
+# =========================================================
+# RUN APPLICATION
+# =========================================================
+
+if __name__ == "__main__":
+    app.run(debug=True)
