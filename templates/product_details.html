@@ -53,9 +53,11 @@
 
         <div class="product-image-section">
 
-            <div class="no-product-image">
-    Product Image
-</div>
+            <img
+                src="{{ url_for('static', filename='images/' + product.image) }}"
+                alt="{{ product.product_name }}"
+                class="product-details-image"
+            >
 
         </div>
 
