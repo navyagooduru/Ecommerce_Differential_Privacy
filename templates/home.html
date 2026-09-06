@@ -334,7 +334,7 @@
 
                 <img
                     class="product-image"
-                    src="{{ url_for('static', filename='images/products/' + product['image']) }}"
+                    src="{{ url_for('static', filename='images/' + product['image']) }}"
                     alt="{{ product['product_name'] }}"
                     data-category="{{ product['category'] }}"
                     onerror="
@@ -428,7 +428,7 @@
 
                 <img
                     class="product-image"
-                    src="{{ url_for('static', filename='images/products/' + product['image']) }}"
+                    src="{{ url_for('static', filename='images/' + product['image']) }}"
                     alt="{{ product['product_name'] }}"
                     data-category="{{ product['category'] }}"
                     onerror="
@@ -509,5 +509,4 @@
     </section>
 
 </body>
-
 </html>
