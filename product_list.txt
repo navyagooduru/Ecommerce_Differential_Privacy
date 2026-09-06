@@ -1,0 +1,199 @@
+P0001 | Casual Jacket | Clothing | BrandD | ₹328.12
+P0002 | Track Pants | Clothing | BrandA | ₹176.32
+P0003 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹357.50
+P0004 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹233.18
+P0005 | Premium Toys Product | Toys | BrandB | ₹197.38
+P0006 | Gym Bag | Sports | BrandB | ₹179.80
+P0007 | Skin Care Set | Beauty | BrandE | ₹475.42
+P0008 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹405.00
+P0009 | Wireless Headphones | Electronics | BrandB | ₹148.42
+P0010 | Premium Toys Product | Toys | BrandC | ₹297.80
+P0011 | Premium Toys Product | Toys | BrandC | ₹445.28
+P0012 | Hair Care Kit | Beauty | BrandD | ₹302.07
+P0013 | Tennis Racket | Sports | BrandC | ₹212.67
+P0014 | Formal Shirt | Clothing | BrandD | ₹166.99
+P0015 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹201.47
+P0016 | Premium Toys Product | Toys | BrandE | ₹116.35
+P0017 | Database Management | Books | BrandC | ₹251.87
+P0018 | Football | Sports | BrandB | ₹313.20
+P0019 | Database Management | Books | BrandA | ₹162.09
+P0020 | Casual Jacket | Clothing | BrandD | ₹368.06
+P0021 | Premium Toys Product | Toys | BrandE | ₹81.04
+P0022 | Track Pants | Clothing | BrandB | ₹215.19
+P0023 | Premium Toys Product | Toys | BrandE | ₹474.69
+P0024 | Laptop | Electronics | BrandA | ₹131.43
+P0025 | Gym Bag | Sports | BrandC | ₹292.86
+P0026 | Premium Toys Product | Toys | BrandC | ₹87.73
+P0027 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹418.78
+P0028 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹386.86
+P0029 | Wireless Earbuds | Electronics | BrandC | ₹374.14
+P0030 | Football | Sports | BrandD | ₹145.91
+P0031 | Premium Toys Product | Toys | BrandC | ₹269.13
+P0032 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹69.95
+P0033 | Premium Home & Kitchen Product | Home & Kitchen | BrandD | ₹26.35
+P0034 | Premium Home & Kitchen Product | Home & Kitchen | BrandB | ₹166.74
+P0035 | Cricket Bat | Sports | BrandA | ₹214.55
+P0036 | Premium Toys Product | Toys | BrandA | ₹242.49
+P0037 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹219.32
+P0038 | Computer Science Fundamentals | Books | BrandD | ₹488.53
+P0039 | Running Shoes | Sports | BrandC | ₹301.56
+P0040 | Summer Dress | Clothing | BrandA | ₹138.41
+P0041 | Premium Toys Product | Toys | BrandE | ₹233.58
+P0042 | Casual Jacket | Clothing | BrandA | ₹342.91
+P0043 | Premium Home & Kitchen Product | Home & Kitchen | BrandB | ₹320.05
+P0044 | Hair Care Kit | Beauty | BrandA | ₹14.91
+P0045 | Sports Shoes | Sports | BrandD | ₹201.62
+P0046 | Beauty Essentials | Beauty | BrandE | ₹324.28
+P0047 | Web Development Guide | Books | BrandB | ₹424.23
+P0048 | Football | Sports | BrandC | ₹129.95
+P0049 | Database Management | Books | BrandE | ₹268.02
+P0050 | Smart Watch | Electronics | BrandE | ₹106.50
+P0051 | Programming Basics | Books | BrandE | ₹237.92
+P0052 | Power Bank | Electronics | BrandC | ₹70.83
+P0053 | Skin Care Set | Beauty | BrandA | ₹465.87
+P0054 | Beauty Essentials | Beauty | BrandB | ₹251.08
+P0055 | Tennis Racket | Sports | BrandB | ₹485.45
+P0056 | Wireless Earbuds | Electronics | BrandC | ₹434.44
+P0057 | Cricket Bat | Sports | BrandB | ₹75.65
+P0058 | Programming Basics | Books | BrandA | ₹131.79
+P0059 | Formal Shirt | Clothing | BrandD | ₹5.51
+P0060 | Moisturizing Cream | Beauty | BrandC | ₹499.82
+P0061 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹37.87
+P0062 | Computer Science Fundamentals | Books | BrandC | ₹198.96
+P0063 | Face Care Kit | Beauty | BrandD | ₹226.80
+P0064 | Track Pants | Clothing | BrandA | ₹268.25
+P0065 | Gym Bag | Sports | BrandB | ₹413.48
+P0066 | Hoodie | Clothing | BrandC | ₹478.49
+P0067 | Personal Care Set | Beauty | BrandD | ₹158.22
+P0068 | Casual Jacket | Clothing | BrandB | ₹209.67
+P0069 | Wireless Headphones | Electronics | BrandA | ₹358.47
+P0070 | Artificial Intelligence Basics | Books | BrandD | ₹30.78
+P0072 | Casual T-Shirt | Clothing | BrandD | ₹126.77
+P0073 | Denim Jeans | Clothing | BrandA | ₹479.99
+P0074 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹40.85
+P0075 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹56.11
+P0076 | Running Shoes | Sports | BrandD | ₹129.91
+P0077 | Running Shoes | Sports | BrandA | ₹21.07
+P0078 | Sports Shoes | Sports | BrandB | ₹385.85
+P0079 | Laptop | Electronics | BrandD | ₹170.69
+P0080 | Tennis Racket | Sports | BrandD | ₹158.47
+P0081 | Summer Dress | Clothing | BrandE | ₹308.70
+P0082 | Sports Shoes | Sports | BrandD | ₹149.99
+P0083 | Yoga Mat | Sports | BrandA | ₹129.52
+P0084 | Hair Care Kit | Beauty | BrandC | ₹417.10
+P0085 | Cotton Shirt | Clothing | BrandD | ₹194.48
+P0086 | Hair Care Kit | Beauty | BrandD | ₹81.24
+P0087 | Premium Toys Product | Toys | BrandD | ₹398.75
+P0088 | Computer Science Fundamentals | Books | BrandA | ₹146.96
+P0089 | Daily Care Kit | Beauty | BrandA | ₹428.79
+P0090 | Premium Toys Product | Toys | BrandD | ₹324.67
+P0091 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹119.97
+P0092 | Computer Science Fundamentals | Books | BrandC | ₹424.51
+P0093 | Premium Toys Product | Toys | BrandE | ₹176.48
+P0094 | Track Pants | Clothing | BrandC | ₹496.47
+P0095 | Artificial Intelligence Basics | Books | BrandD | ₹130.14
+P0096 | Premium Toys Product | Toys | BrandD | ₹314.96
+P0097 | Tennis Racket | Sports | BrandC | ₹474.74
+P0098 | Smart Watch | Electronics | BrandA | ₹471.36
+P0099 | Football | Sports | BrandB | ₹175.11
+P0100 | Cricket Bat | Sports | BrandD | ₹108.14
+P0101 | Hoodie | Clothing | BrandE | ₹356.46
+P0102 | Moisturizing Cream | Beauty | BrandB | ₹68.01
+P0103 | Gym Bag | Sports | BrandC | ₹279.69
+P0104 | Beauty Gift Set | Beauty | BrandE | ₹159.00
+P0105 | Face Care Kit | Beauty | BrandD | ₹329.95
+P0106 | Tennis Racket | Sports | BrandD | ₹305.23
+P0107 | Moisturizing Cream | Beauty | BrandC | ₹361.01
+P0108 | Python Programming | Books | BrandD | ₹136.25
+P0109 | Summer Dress | Clothing | BrandC | ₹349.54
+P0110 | Premium Toys Product | Toys | BrandC | ₹318.33
+P0111 | USB Charger | Electronics | BrandD | ₹414.19
+P0112 | Running Shoes | Sports | BrandC | ₹323.16
+P0113 | Premium Toys Product | Toys | BrandC | ₹33.50
+P0114 | Premium Home & Kitchen Product | Home & Kitchen | BrandD | ₹389.84
+P0115 | Premium Toys Product | Toys | BrandA | ₹82.57
+P0116 | Sports T-Shirt | Sports | BrandC | ₹462.08
+P0117 | Daily Care Kit | Beauty | BrandC | ₹45.76
+P0118 | Wireless Earbuds | Electronics | BrandE | ₹116.31
+P0119 | Data Science Handbook | Books | BrandE | ₹495.04
+P0120 | Computer Science Fundamentals | Books | BrandC | ₹202.70
+P0121 | Face Care Kit | Beauty | BrandC | ₹302.01
+P0122 | Premium Toys Product | Toys | BrandD | ₹375.13
+P0123 | Power Bank | Electronics | BrandA | ₹345.31
+P0124 | Database Management | Books | BrandB | ₹125.29
+P0125 | Premium Toys Product | Toys | BrandC | ₹270.47
+P0126 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹424.55
+P0127 | Face Care Kit | Beauty | BrandE | ₹247.73
+P0128 | Casual Jacket | Clothing | BrandD | ₹302.09
+P0129 | Database Management | Books | BrandD | ₹172.45
+P0130 | Personal Care Set | Beauty | BrandE | ₹499.69
+P0131 | Premium Toys Product | Toys | BrandC | ₹95.55
+P0132 | Track Pants | Clothing | BrandC | ₹176.36
+P0133 | Bluetooth Speaker | Electronics | BrandD | ₹358.83
+P0134 | Premium Home & Kitchen Product | Home & Kitchen | BrandA | ₹74.88
+P0135 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹220.04
+P0136 | Running Shoes | Sports | BrandA | ₹287.83
+P0137 | Premium Toys Product | Toys | BrandD | ₹412.26
+P0138 | Power Bank | Electronics | BrandA | ₹257.19
+P0139 | Running Shoes | Sports | BrandE | ₹27.30
+P0140 | Sports Shoes | Sports | BrandA | ₹331.68
+P0141 | Casual Jacket | Clothing | BrandA | ₹291.66
+P0142 | Computer Science Fundamentals | Books | BrandC | ₹92.49
+P0143 | Premium Toys Product | Toys | BrandA | ₹95.95
+P0144 | Summer Dress | Clothing | BrandC | ₹383.75
+P0145 | Bluetooth Speaker | Electronics | BrandC | ₹233.97
+P0146 | Summer Dress | Clothing | BrandC | ₹220.84
+P0147 | Premium Toys Product | Toys | BrandB | ₹82.85
+P0148 | Daily Care Kit | Beauty | BrandE | ₹151.83
+P0149 | Moisturizing Cream | Beauty | BrandD | ₹391.23
+P0150 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹225.50
+P0151 | Machine Learning Guide | Books | BrandD | ₹279.15
+P0152 | Python Programming | Books | BrandD | ₹433.05
+P0153 | Wireless Earbuds | Electronics | BrandA | ₹368.68
+P0154 | Web Development Guide | Books | BrandC | ₹15.14
+P0155 | Running Shoes | Sports | BrandE | ₹87.17
+P0156 | Casual Jacket | Clothing | BrandC | ₹339.15
+P0157 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹66.63
+P0158 | Wireless Earbuds | Electronics | BrandB | ₹472.79
+P0159 | Web Development Guide | Books | BrandD | ₹131.92
+P0160 | Database Management | Books | BrandE | ₹266.63
+P0161 | Premium Toys Product | Toys | BrandB | ₹100.80
+P0162 | Yoga Mat | Sports | BrandD | ₹31.25
+P0163 | Hoodie | Clothing | BrandA | ₹264.60
+P0164 | Hair Care Kit | Beauty | BrandA | ₹431.34
+P0165 | Wireless Headphones | Electronics | BrandA | ₹286.08
+P0166 | Premium Toys Product | Toys | BrandA | ₹194.62
+P0167 | Data Science Handbook | Books | BrandA | ₹211.59
+P0168 | Wireless Headphones | Electronics | BrandE | ₹237.82
+P0169 | Data Science Handbook | Books | BrandB | ₹72.44
+P0170 | Premium Toys Product | Toys | BrandD | ₹155.66
+P0171 | Running Shoes | Sports | BrandC | ₹89.58
+P0172 | Moisturizing Cream | Beauty | BrandC | ₹313.60
+P0173 | Sports Shoes | Sports | BrandD | ₹104.62
+P0174 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹379.18
+P0175 | Machine Learning Guide | Books | BrandB | ₹372.05
+P0176 | Bluetooth Speaker | Electronics | BrandE | ₹283.64
+P0177 | Cricket Bat | Sports | BrandE | ₹258.67
+P0178 | Premium Home & Kitchen Product | Home & Kitchen | BrandD | ₹330.79
+P0179 | Daily Care Kit | Beauty | BrandB | ₹168.54
+P0180 | Premium Home & Kitchen Product | Home & Kitchen | BrandC | ₹495.18
+P0181 | Power Bank | Electronics | BrandD | ₹38.26
+P0182 | Sports T-Shirt | Sports | BrandD | ₹25.78
+P0183 | Laptop | Electronics | BrandA | ₹59.34
+P0184 | Skin Care Set | Beauty | BrandC | ₹250.88
+P0185 | Moisturizing Cream | Beauty | BrandE | ₹162.71
+P0186 | Python Programming | Books | BrandB | ₹13.32
+P0187 | Premium Home & Kitchen Product | Home & Kitchen | BrandD | ₹286.71
+P0188 | Casual Jacket | Clothing | BrandA | ₹106.61
+P0189 | Formal Shirt | Clothing | BrandC | ₹9.37
+P0190 | Premium Home & Kitchen Product | Home & Kitchen | BrandE | ₹395.92
+P0191 | Hoodie | Clothing | BrandD | ₹36.64
+P0192 | Power Bank | Electronics | BrandD | ₹387.12
+P0193 | Yoga Mat | Sports | BrandC | ₹441.45
+P0194 | Artificial Intelligence Basics | Books | BrandA | ₹301.72
+P0195 | Laptop | Electronics | BrandD | ₹336.83
+P0196 | Casual Jacket | Clothing | BrandC | ₹409.81
+P0197 | Database Management | Books | BrandB | ₹191.31
+P0198 | Premium Toys Product | Toys | BrandA | ₹139.41
+P0199 | Sports Shoes | Sports | BrandD | ₹155.38
+P0200 | Summer Dress | Clothing | BrandD | ₹227.38

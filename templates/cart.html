@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart - ShopSmart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            height: 70px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            padding: 0 65px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-right: 28px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .user-section {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-name {
+            margin-right: 28px;
+        }
+
+        /* =========================
+           CART
+        ========================= */
+
+        .cart-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cart-item {
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-image {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            background: #f8f8f8;
+            border-radius: 8px;
+            margin-right: 25px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h2 {
+            margin: 0 0 8px;
+            font-size: 21px;
+        }
+
+        .category {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* =========================
+           QUANTITY
+        ========================= */
+
+        .quantity-section {
+            text-align: center;
+            margin-right: 40px;
+        }
+
+        .quantity-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls form {
+            margin: 0;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 5px;
+            background: #2864e6;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .quantity-btn:hover {
+            background: #1f54c7;
+        }
+
+        .quantity {
+            font-size: 18px;
+            font-weight: bold;
+            min-width: 25px;
+        }
+
+        /* =========================
+           ITEM TOTAL
+        ========================= */
+
+        .item-total {
+            width: 130px;
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           CART TOTAL
+        ========================= */
+
+        .cart-total {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: right;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-total h2 {
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            display: inline-block;
+            background: #2864e6;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .checkout-btn:hover {
+            background: #1f54c7;
+        }
+
+        /* =========================
+           EMPTY CART
+        ========================= */
+
+        .empty-cart {
+            background: white;
+            padding: 60px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-cart h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #2864e6;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 20px;
+                height: auto;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                width: 100%;
+            }
+
+            .user-section {
+                margin-left: 0;
+            }
+
+            .cart-item {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .cart-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .quantity-section {
+                margin-right: 0;
+            }
+
+            .item-total {
+                width: auto;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            ShopSmart
+        </div>
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('home') }}">
+            Products
+        </a>
+
+        <a href="{{ url_for('cart') }}">
+            Cart
+        </a>
+
+        <div class="user-section">
+
+            {% if session.get('user_name') %}
+
+                <a href="{{ url_for('orders') }}">
+                    My Orders
+                </a>
+
+                <span class="user-name">
+                    Hi, {{ session.get('user_name') }}
+                </span>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         CART CONTENT
+    ========================= -->
+
+    <div class="cart-container">
+
+        <h1>
+            Shopping Cart
+        </h1>
+
+
+        {% if items %}
+
+            {% for item in items %}
+
+            <div class="cart-item">
+
+                <img
+                    class="cart-image"
+                    src="{{ url_for('static', filename='images/products/' + item['image']) }}"
+                    alt="{{ item['product_name'] }}"
+                    data-category="{{ item['category'] }}"
+                    onerror="this.onerror=null; this.src='/static/images/' + this.dataset.category.toLowerCase() + '.jpg';"
+                >
+
+
+                <div class="item-details">
+
+                    <h2>
+                        {{ item['product_name'] }}
+                    </h2>
+
+                    <div class="category">
+                        {{ item['category'] }}
+                    </div>
+
+                    <div class="price">
+                        ₹{{ "%.2f"|format(item['price']) }}
+                    </div>
+
+                </div>
+
+
+                <div class="quantity-section">
+
+                    <div class="quantity-title">
+                        Quantity
+                    </div>
+
+                    <div class="quantity-controls">
+
+                        <form
+                            action="{{ url_for('decrease_quantity', product_id=item['product_id']) }}"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="quantity-btn"
+                            >
+                                −
+                            </button>
+
+                        </form>
+
+
+                        <span class="quantity">
+                            {{ item['quantity'] }}
+                        </span>
+
+
+                        <form
+                            action="{{ url_for('increase_quantity', product_id=item['product_id']) }}"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="quantity-btn"
+                            >
+                                +
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <div class="item-total">
+
+                    ₹{{ "%.2f"|format(item['price'] * item['quantity']) }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+            <!-- =========================
+                 TOTAL
+            ========================= -->
+
+            <div class="cart-total">
+
+                <h2>
+                    Total: ₹{{ "%.2f"|format(total) }}
+                </h2>
+
+                <a
+                    href="{{ url_for('checkout') }}"
+                    class="checkout-btn"
+                >
+                    Proceed to Checkout
+                </a>
+
+            </div>
+
+
+        {% else %}
+
+            <!-- =========================
+                 EMPTY CART
+            ========================= -->
+
+            <div class="empty-cart">
+
+                <h2>
+                    Your Cart is Empty
+                </h2>
+
+                <p>
+                    Looks like you haven't added anything yet.
+                </p>
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="shop-btn"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

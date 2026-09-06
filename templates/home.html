@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopSmart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        /* =========================
+           NAVIGATION BAR
+        ========================= */
+
+        nav {
+            height: 70px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            padding: 0 65px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-right: 28px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .user-section {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-name {
+            font-size: 16px;
+            color: white;
+            margin-right: 28px;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            background: #2864e6;
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin: 0 0 18px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin: 0;
+        }
+
+        /* =========================
+           PRODUCTS SECTION
+        ========================= */
+
+        .products-section {
+            padding: 45px 65px;
+        }
+
+        .products-section h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+            padding-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #f8f8f8;
+        }
+
+        .product-card h3 {
+            font-size: 19px;
+            margin: 18px 10px 8px;
+        }
+
+        .category {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 15px;
+        }
+
+        .view-btn,
+        .cart-btn {
+            padding: 10px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .view-btn {
+            background: #e5e7eb;
+            color: #111;
+        }
+
+        .view-btn:hover {
+            background: #d1d5db;
+        }
+
+        .cart-btn {
+            background: #2864e6;
+            color: white;
+            border: none;
+        }
+
+        .cart-btn:hover {
+            background: #1f54c7;
+        }
+
+        /* =========================
+           RECOMMENDATIONS SECTION
+        ========================= */
+
+        .recommendations-section {
+            padding: 45px 65px 60px;
+            background: #eef4ff;
+        }
+
+        .recommendations-section h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+        .recommendation-score {
+            color: #2864e6;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 10px 0 18px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                padding: 0 25px;
+            }
+
+            .products-section,
+            .recommendations-section {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                height: auto;
+                padding: 20px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .user-section {
+                margin-left: 0;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            ShopSmart
+        </div>
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('home') }}">
+            Products
+        </a>
+
+        <a href="{{ url_for('cart') }}">
+            Cart
+        </a>
+
+        <div class="user-section">
+
+            {% if session.get('user_name') %}
+
+                <a href="{{ url_for('orders') }}">
+                    My Orders
+                </a>
+
+                <span class="user-name">
+                    Hi, {{ session.get('user_name') }}
+                </span>
+
+                <a href="{{ url_for('logout') }}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
+    <section class="hero">
+
+        <h1>
+            Smart Shopping. Better Recommendations.
+        </h1>
+
+        <p>
+            Discover products based on shopping preferences
+            while keeping your data protected.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS SECTION
+    ========================= -->
+
+    <section class="products-section">
+
+        <h2>
+            Featured Products
+        </h2>
+
+        <div class="product-grid">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="{{ url_for('static', filename='images/products/' + product['image']) }}"
+                    alt="{{ product['product_name'] }}"
+                    data-category="{{ product['category'] }}"
+                    onerror="
+                        this.onerror=null;
+
+                        if (this.dataset.category === 'Home & Kitchen') {
+                            this.src='/static/images/home.jpg';
+                        }
+                        else if (this.dataset.category === 'Beauty') {
+                            this.src='/static/images/beauty.jpg';
+                        }
+                        else if (this.dataset.category === 'Books') {
+                            this.src='/static/images/books.jpg';
+                        }
+                        else if (this.dataset.category === 'Clothing') {
+                            this.src='/static/images/clothing.jpg';
+                        }
+                        else if (this.dataset.category === 'Electronics') {
+                            this.src='/static/images/electronics.jpg';
+                        }
+                        else if (this.dataset.category === 'Sports') {
+                            this.src='/static/images/sports.jpg';
+                        }
+                        else if (this.dataset.category === 'Toys') {
+                            this.src='/static/images/toys.jpg';
+                        }
+                    "
+                >
+
+                <h3>
+                    {{ product['product_name'] }}
+                </h3>
+
+                <div class="category">
+                    {{ product['category'] }}
+                </div>
+
+                <div class="price">
+                    ₹{{ "%.2f"|format(product['price']) }}
+                </div>
+
+                <div class="button-container">
+
+                    <a
+                        href="{{ url_for('product_details', product_id=product['product_id']) }}"
+                        class="view-btn"
+                    >
+                        View Product
+                    </a>
+
+                    <form
+                        action="{{ url_for('add_to_cart', product_id=product['product_id']) }}"
+                        method="POST"
+                    >
+
+                        <button
+                            type="submit"
+                            class="cart-btn"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRIVACY-PRESERVING RECOMMENDATIONS
+    ========================= -->
+
+    <section class="recommendations-section">
+
+        <h2>
+            Privacy-Preserving Recommendations
+        </h2>
+
+        <div class="product-grid">
+
+            {% for product in recommendations %}
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="{{ url_for('static', filename='images/products/' + product['image']) }}"
+                    alt="{{ product['product_name'] }}"
+                    data-category="{{ product['category'] }}"
+                    onerror="
+                        this.onerror=null;
+
+                        if (this.dataset.category === 'Home & Kitchen') {
+                            this.src='/static/images/home.jpg';
+                        }
+                        else if (this.dataset.category === 'Beauty') {
+                            this.src='/static/images/beauty.jpg';
+                        }
+                        else if (this.dataset.category === 'Books') {
+                            this.src='/static/images/books.jpg';
+                        }
+                        else if (this.dataset.category === 'Clothing') {
+                            this.src='/static/images/clothing.jpg';
+                        }
+                        else if (this.dataset.category === 'Electronics') {
+                            this.src='/static/images/electronics.jpg';
+                        }
+                        else if (this.dataset.category === 'Sports') {
+                            this.src='/static/images/sports.jpg';
+                        }
+                        else if (this.dataset.category === 'Toys') {
+                            this.src='/static/images/toys.jpg';
+                        }
+                    "
+                >
+
+                <h3>
+                    {{ product['product_name'] }}
+                </h3>
+
+                <div class="category">
+                    {{ product['category'] }}
+                </div>
+
+                <div class="price">
+                    ₹{{ "%.2f"|format(product['price']) }}
+                </div>
+
+                <div class="recommendation-score">
+                    Privacy-Protected Score:
+                    {{ product['recommendation_score'] }}
+                </div>
+
+                <div class="button-container">
+
+                    <a
+                        href="{{ url_for('product_details', product_id=product['product_id']) }}"
+                        class="view-btn"
+                    >
+                        View Product
+                    </a>
+
+                    <form
+                        action="{{ url_for('add_to_cart', product_id=product['product_id']) }}"
+                        method="POST"
+                    >
+
+                        <button
+                            type="submit"
+                            class="cart-btn"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

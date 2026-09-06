@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.product_name }} - ShopSmart</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            ShopSmart
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/">Products</a>
+
+            <a href="/cart">Cart</a>
+
+            {% if session.get("user_id") %}
+
+                <a href="/orders">My Orders</a>
+
+                <span>
+                    Hi, {{ session.get("user_name") }}
+                </span>
+
+                <a href="/logout">Logout</a>
+
+            {% else %}
+
+                <a href="/login">Login</a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <!-- Product Details -->
+    <div class="product-details-container">
+
+        <div class="product-image-section">
+
+            <div class="no-product-image">
+    Product Image
+</div>
+
+        </div>
+
+
+        <div class="product-info-section">
+
+            <h1>
+                {{ product.product_name }}
+            </h1>
+
+            <p class="product-category">
+                Category: {{ product.category }}
+            </p>
+
+            <h2>
+                ₹{{ "%.2f"|format(product.price) }}
+            </h2>
+
+            <p class="product-description">
+                {{ product.description }}
+            </p>
+
+
+            <!-- Add to Cart -->
+            <form
+                action="{{ url_for('add_to_cart', product_id=product.product_id) }}"
+                method="POST"
+            >
+
+                <button type="submit" class="add-cart-button">
+                    Add to Cart
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Recommended Products -->
+    {% if recommendations %}
+
+    <section class="recommendations-section">
+
+        <h2>
+            Recommended for You
+        </h2>
+
+        <p class="recommendation-subtitle">
+            Based on your shopping preferences
+        </p>
+
+
+        <div class="recommendations-grid">
+
+            {% for item in recommendations %}
+
+            <div class="recommendation-card">
+
+                <img
+                    src="{{ url_for('static', filename='images/products/' + item.image) }}"
+                    alt="{{ item.product_name }}"
+                >
+
+                <h3>
+                    {{ item.product_name }}
+                </h3>
+
+                <p>
+                    {{ item.category }}
+                </p>
+
+                <h4>
+                    ₹{{ "%.2f"|format(item.price) }}
+                </h4>
+
+                <a
+                    href="{{ url_for('product_details', product_id=item.product_id) }}"
+                    class="view-product-button"
+                >
+                    View Product
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+</body>
+
+</html>
