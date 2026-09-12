@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopSmart</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================================
+           OFFER BAR
+        ================================= */
+
+        .offer-wrapper {
+            width: 100%;
+            overflow: hidden;
+            background: #111111;
+            color: white;
+        }
+
+        .offer-track {
+            display: flex;
+            width: max-content;
+            animation: offerScroll 25s linear infinite;
+        }
+
+        .offer-item {
+            min-width: 400px;
+            padding: 12px 25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .offer-item span {
+            color: #ff3847;
+        }
+
+        @keyframes offerScroll {
+
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+
+        }
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            width: 100%;
+            min-height: 75px;
+
+            padding: 0 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: white;
+
+            border-bottom: 1px solid #eeeeee;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #f23845;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #f23845;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ================================
+           SEARCH
+        ================================= */
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .search-box {
+            width: 180px;
+
+            padding: 10px 15px;
+
+            border: 1px solid #dddddd;
+            border-radius: 25px;
+
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        .search-box:focus {
+            border-color: #f23845;
+        }
+
+        .search-button {
+            border: none;
+
+            background: #111111;
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 22px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #f23845;
+        }
+
+        .login-btn {
+            background: #f23845;
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero-section {
+            width: 86%;
+            max-width: 1250px;
+
+            min-height: 380px;
+
+            margin: 28px auto 55px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            background: #f7f7f7;
+        }
+
+        .hero-content {
+            padding: 55px 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-small {
+            color: #f23845;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 46px;
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: #f23845;
+        }
+
+        .hero-description {
+            max-width: 500px;
+
+            color: #555555;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hero-btn {
+            padding: 13px 22px;
+
+            border-radius: 25px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .hero-primary {
+            background: #111111;
+            color: white;
+        }
+
+        .hero-secondary {
+            background: #e8e8e8;
+            color: #111111;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+
+            min-height: 380px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        /* ================================
+           FEATURES
+        ================================= */
+
+        .features {
+            width: 86%;
+            max-width: 1250px;
+
+            margin: 0 auto 60px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .feature {
+            padding: 20px;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 15px;
+
+            background: white;
+        }
+
+        .feature-title {
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+        .feature-text {
+            color: #777777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        /* ================================
+           GENERAL SECTION
+        ================================= */
+
+        .section {
+            width: 86%;
+            max-width: 1250px;
+
+            margin: 0 auto 65px;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: #777777;
+
+            font-size: 14px;
+
+            margin-top: 6px;
+        }
+
+        /* ================================
+           SEARCH RESULTS
+        ================================= */
+
+        .search-result-box {
+            margin-bottom: 25px;
+
+            padding: 16px 20px;
+
+            border-radius: 12px;
+
+            background: #f7f7f7;
+
+            font-size: 14px;
+        }
+
+        .search-result-box strong {
+            color: #f23845;
+        }
+
+        .clear-search {
+            margin-left: 10px;
+
+            color: #f23845;
+
+            font-weight: 700;
+        }
+
+        /* ================================
+           CATEGORIES
+        ================================= */
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 18px;
+        }
+
+        .category-card {
+            text-align: center;
+        }
+
+        .category-image-wrapper {
+            width: 120px;
+            height: 120px;
+
+            margin: 0 auto 12px;
+
+            overflow: hidden;
+
+            border-radius: 50%;
+
+            background: #f5f5f5;
+
+            border: 1px solid #eeeeee;
+
+            transition: 0.25s;
+        }
+
+        .category-card:hover .category-image-wrapper {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .category-name {
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .category-description {
+            color: #888888;
+
+            font-size: 11px;
+
+            margin-top: 5px;
+        }
+
+        /* ================================
+           PRODUCTS
+        ================================= */
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            transition: 0.25s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .product-image-link {
+            display: block;
+
+            background: #f5f5f5;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .product-category {
+            color: #f23845;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            margin-bottom: 7px;
+        }
+
+        .product-name {
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            color: #777777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            min-height: 36px;
+
+            margin-bottom: 12px;
+        }
+
+        .product-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+        .add-cart-btn {
+            border: none;
+
+            background: #111111;
+
+            color: white;
+
+            padding: 10px 14px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .add-cart-btn:hover {
+            background: #f23845;
+        }
+
+        /* ================================
+           RECOMMENDATIONS
+        ================================= */
+
+        .recommendation-section {
+            background: #f8f8f8;
+
+            padding: 45px 0;
+
+            margin-bottom: 65px;
+        }
+
+        .recommendation-inner {
+            width: 86%;
+            max-width: 1250px;
+
+            margin: auto;
+        }
+
+        .privacy-badge {
+            display: inline-block;
+
+            background: #111111;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+        .recommendation-grid {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 20px;
+        }
+
+        .recommendation-card {
+            background: white;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+        }
+
+        .recommendation-image {
+            width: 100%;
+            height: 190px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .recommendation-info {
+            padding: 14px;
+        }
+
+        .recommendation-category {
+            color: #f23845;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        .recommendation-name {
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin: 6px 0;
+        }
+
+        .recommendation-price {
+            font-size: 15px;
+
+            font-weight: 800;
+        }
+
+        /* ================================
+           PRIVACY
+        ================================= */
+
+        .privacy-box {
+            background: #111111;
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 35px 40px;
+
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+        .privacy-title {
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .privacy-text {
+            color: #cccccc;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .privacy-points {
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .privacy-point {
+            background: #222222;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+        }
+
+        /* ================================
+           EMPTY
+        ================================= */
+
+        .empty-message {
+            padding: 35px;
+
+            text-align: center;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 15px;
+
+            color: #777777;
+        }
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            background: #111111;
+
+            color: white;
+
+            padding: 45px 7% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+
+            gap: 40px;
+
+            margin-bottom: 35px;
+        }
+
+        .footer-logo {
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .footer-logo span {
+            color: #f23845;
+        }
+
+        .footer-description {
+            color: #aaaaaa;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            max-width: 350px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: grid;
+
+            gap: 9px;
+        }
+
+        .footer-links a {
+            color: #aaaaaa;
+
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333333;
+
+            padding-top: 20px;
+
+            color: #888888;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 1100px) {
+
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .recommendation-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 18px 5%;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+            }
+
+            .nav-right {
+                width: 100%;
+
+                justify-content: center;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                min-height: 300px;
+
+                order: -1;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .privacy-box {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-content {
+                padding: 35px 25px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recommendation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-form {
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         OFFER BAR
+    ================================= -->
+
+    <div class="offer-wrapper">
+
+        <div class="offer-track">
+
+            <div class="offer-item">
+                <span>SALE</span> — Up to 50% OFF
+            </div>
+
+            <div class="offer-item">
+                NEW ARRIVALS — Shop the latest products
+            </div>
+
+            <div class="offer-item">
+                PRIVACY — Privacy-preserving shopping analytics
+            </div>
+
+            <div class="offer-item">
+                SPECIAL DEALS — Limited time offers
+            </div>
+
+            <div class="offer-item">
+                <span>SALE</span> — Up to 50% OFF
+            </div>
+
+            <div class="offer-item">
+                NEW ARRIVALS — Shop the latest products
+            </div>
+
+            <div class="offer-item">
+                PRIVACY — Privacy-preserving shopping analytics
+            </div>
+
+            <div class="offer-item">
+                SPECIAL DEALS — Limited time offers
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <nav class="navbar">
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="logo"
+        >
+            Shop<span>Smart</span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="#categories">
+                Categories
+            </a>
+
+            <a href="#offers">
+                Offers
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            {% if session.get('user_id') %}
+
+            <a href="{{ url_for('orders') }}">
+                My Orders
+            </a>
+
+            <a href="{{ url_for('cart') }}">
+                Cart
+            </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <form
+                action="{{ url_for('home') }}"
+                method="GET"
+                class="search-form"
+            >
+
+                <input
+                    type="text"
+                    name="search"
+                    class="search-box"
+                    placeholder="Search products..."
+                    value="{{ search_query or '' }}"
+                >
+
+                <button
+                    type="submit"
+                    class="search-button"
+                >
+                    Search
+                </button>
+
+            </form>
+
+
+            {% if session.get('user_id') %}
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="login-btn"
+            >
+                Logout
+            </a>
+
+            {% else %}
+
+            <a
+                href="{{ url_for('login') }}"
+                class="login-btn"
+            >
+                Login
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================================
+         HERO
+    ================================= -->
+
+    <section class="hero-section">
+
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                SMART SHOPPING EXPERIENCE
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Shop smarter.
+
+                <br>
+
+                <span>Stay private.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Discover products, explore categories and enjoy
+                personalized shopping while privacy-preserving
+                analytics help protect individual shopping
+                preferences.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#products"
+                    class="hero-btn hero-primary"
+                >
+                    Shop Now
+                </a>
+
+                <a
+                    href="#categories"
+                    class="hero-btn hero-secondary"
+                >
+                    Explore Categories
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <img
+            src="{{ url_for('static', filename='images/hero-shopping.jpg') }}"
+            alt="ShopSmart"
+            class="hero-image"
+        >
+
+    </section>
+
+
+    <!-- ================================
+         FEATURES
+    ================================= -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-title">
+                Secure Shopping
+            </div>
+
+            <div class="feature-text">
+                Shop and manage your orders through a simple
+                e-commerce interface.
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-title">
+                Smart Recommendations
+            </div>
+
+            <div class="feature-text">
+                Recommendations are based on shopping
+                interaction patterns.
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-title">
+                Privacy Preserving
+            </div>
+
+            <div class="feature-text">
+                Differential Privacy adds controlled noise
+                to analytics.
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-title">
+                Easy Checkout
+            </div>
+
+            <div class="feature-text">
+                Add products to your cart and complete
+                your order easily.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         SEARCH RESULT
+    ================================= -->
+
+    {% if search_query %}
+
+    <section class="section">
+
+        <div class="search-result-box">
+
+            Search results for:
+
+            <strong>
+                "{{ search_query }}"
+            </strong>
+
+            <a
+                href="{{ url_for('home') }}"
+                class="clear-search"
+            >
+                Clear Search
+            </a>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         CATEGORIES
+    ================================= -->
+
+    <section
+        class="section"
+        id="categories"
+    >
+
+        <div class="section-heading">
+
+            <h2 class="section-title">
+                Shop by Category
+            </h2>
+
+            <p class="section-subtitle">
+                Explore products based on your interests
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <a
+                href="{{ url_for('category', category_name='Clothing') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/clothing.jpg') }}"
+                        alt="Clothing"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Clothing
+                </div>
+
+                <div class="category-description">
+                    Fashion & Style
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Toys') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/toys.jpg') }}"
+                        alt="Toys"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Toys
+                </div>
+
+                <div class="category-description">
+                    Fun & Games
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Electronics') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/electronics.jpg') }}"
+                        alt="Electronics"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Electronics
+                </div>
+
+                <div class="category-description">
+                    Tech & Gadgets
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Sports') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/sports.jpg') }}"
+                        alt="Sports"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Sports
+                </div>
+
+                <div class="category-description">
+                    Fitness & Outdoor
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Beauty') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/beauty.jpg') }}"
+                        alt="Beauty"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Beauty
+                </div>
+
+                <div class="category-description">
+                    Beauty & Care
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Books') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/books.jpg') }}"
+                        alt="Books"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Books
+                </div>
+
+                <div class="category-description">
+                    Learn & Explore
+                </div>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('category', category_name='Home') }}"
+                class="category-card"
+            >
+
+                <div class="category-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/home.jpg') }}"
+                        alt="Home"
+                        class="category-image"
+                    >
+
+                </div>
+
+                <div class="category-name">
+                    Home
+                </div>
+
+                <div class="category-description">
+                    Home Essentials
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         PRODUCTS
+    ================================= -->
+
+    <section
+        class="section"
+        id="products"
+    >
+
+        <div class="section-heading">
+
+            <h2 class="section-title">
+
+                {% if search_query %}
+                    Search Results
+                {% else %}
+                    Best Sellers
+                {% endif %}
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                {% if search_query %}
+                    Products matching your search
+                {% else %}
+                    Explore our latest products
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+        {% if products %}
+
+
+        <div class="product-grid">
+
+
+            {% for product in products %}
+
+
+            <div class="product-card">
+
+
+                <a
+                    href="{{ url_for('product_details', product_id=product['product_id']) }}"
+                    class="product-image-link"
+                >
+
+                    {% set category_image =
+                        'images/' ~ product['category']|lower ~ '.jpg'
+                    %}
+
+                    <img
+                        src="{{ url_for('static', filename=category_image) }}"
+                        alt="{{ product['product_name'] }}"
+                        class="product-image"
+                    >
+
+                </a>
+
+
+                <div class="product-info">
+
+
+                    <div class="product-category">
+                        {{ product['category'] }}
+                    </div>
+
+
+                    <div class="product-name">
+                        {{ product['product_name'] }}
+                    </div>
+
+
+                    <div class="product-description">
+
+                        {% if product['description'] %}
+
+                            {{ product['description'] }}
+
+                        {% else %}
+
+                            Quality product available at ShopSmart.
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+
+                        <div class="product-price">
+
+                            ₹{{ "%.2f"|format(product['price']) }}
+
+                        </div>
+
+
+                        {% if session.get('user_id') %}
+
+
+                        <form
+                            action="{{ url_for('add_to_cart', product_id=product['product_id']) }}"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="add-cart-btn"
+                            >
+                                Add to Cart
+                            </button>
+
+                        </form>
+
+
+                        {% else %}
+
+
+                        <a
+                            href="{{ url_for('login') }}"
+                            class="add-cart-btn"
+                        >
+                            Add to Cart
+                        </a>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty-message">
+
+            No products found for
+            <strong>"{{ search_query }}"</strong>.
+
+            <br><br>
+
+            Try searching for:
+
+            <br><br>
+
+            toys, clothing, electronics, books, beauty,
+            sports or home.
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+    <!-- ================================
+         RECOMMENDATIONS
+    ================================= -->
+
+    {% if session.get('user_id') and recommendations and not search_query %}
+
+
+    <section class="recommendation-section">
+
+
+        <div class="recommendation-inner">
+
+
+            <div class="section-heading">
+
+                <div class="privacy-badge">
+                    PRIVACY-PRESERVING
+                </div>
+
+                <h2 class="section-title">
+                    Recommended For You
+                </h2>
+
+                <p class="section-subtitle">
+                    Recommendations based on your shopping
+                    interaction patterns.
+                </p>
+
+            </div>
+
+
+            <div class="recommendation-grid">
+
+
+                {% for product in recommendations %}
+
+
+                {% set recommendation_image =
+                    'images/' ~ product['category']|lower ~ '.jpg'
+                %}
+
+
+                <div class="recommendation-card">
+
+
+                    <a
+                        href="{{ url_for('product_details', product_id=product['product_id']) }}"
+                    >
+
+                        <img
+                            src="{{ url_for('static', filename=recommendation_image) }}"
+                            alt="{{ product['product_name'] }}"
+                            class="recommendation-image"
+                        >
+
+                    </a>
+
+
+                    <div class="recommendation-info">
+
+
+                        <div class="recommendation-category">
+                            {{ product['category'] }}
+                        </div>
+
+
+                        <div class="recommendation-name">
+                            {{ product['product_name'] }}
+                        </div>
+
+
+                        <div class="recommendation-price">
+                            ₹{{ "%.2f"|format(product['price']) }}
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    {% endif %}
+
+
+    <!-- ================================
+         PRIVACY
+    ================================= -->
+
+    <section class="section">
+
+
+        <div class="privacy-box">
+
+
+            <div>
+
+                <h2 class="privacy-title">
+                    Your Shopping Preferences Stay Protected
+                </h2>
+
+
+                <p class="privacy-text">
+
+                    ShopSmart uses Differential Privacy for
+                    privacy-preserving analytics. Instead of
+                    directly exposing exact shopping statistics,
+                    controlled noise can be added to aggregate
+                    analytics before they are used for trend
+                    analysis and recommendations.
+
+                </p>
+
+            </div>
+
+
+            <div class="privacy-points">
+
+                <div class="privacy-point">
+                    Differential Privacy
+                </div>
+
+                <div class="privacy-point">
+                    Laplace Mechanism
+                </div>
+
+                <div class="privacy-point">
+                    Privacy-Preserving Analytics
+                </div>
+
+                <div class="privacy-point">
+                    Personalized Shopping
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <div class="footer-logo">
+                    Shop<span>Smart</span>
+                </div>
+
+
+                <p class="footer-description">
+
+                    A privacy-preserving e-commerce platform
+                    combining shopping, analytics and
+                    Differential Privacy.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <div class="footer-title">
+                    Shop
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="#categories">
+                        Categories
+                    </a>
+
+                    <a href="#products">
+                        Products
+                    </a>
+
+                    <a href="#offers">
+                        Offers
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="footer-title">
+                    Account
+                </div>
+
+                <div class="footer-links">
+
+                    {% if session.get('user_id') %}
+
+                    <a href="{{ url_for('orders') }}">
+                        My Orders
+                    </a>
+
+                    <a href="{{ url_for('cart') }}">
+                        Cart
+                    </a>
+
+                    <a href="{{ url_for('logout') }}">
+                        Logout
+                    </a>
+
+                    {% else %}
+
+                    <a href="{{ url_for('login') }}">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('register') }}">
+                        Register
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="footer-title">
+                    Privacy
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="{{ url_for('privacy_analytics') }}">
+                        Privacy Analytics
+                    </a>
+
+                    <a href="{{ url_for('interactions') }}">
+                        Interactions
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 ShopSmart — Protecting Shopping Preferences
+            with Differential Privacy
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ category_name }} - ShopSmart</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           OFFER BAR
+        ===================================================== */
+
+        .offer-bar {
+            width: 100%;
+            height: 42px;
+
+            background: #111;
+            color: white;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+        }
+
+
+        .offer-track {
+            display: flex;
+            width: max-content;
+
+            animation:
+                scrollOffers
+                28s
+                linear
+                infinite;
+        }
+
+
+        .offer-item {
+            white-space: nowrap;
+
+            padding: 0 50px;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        @keyframes scrollOffers {
+
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            width: 100%;
+
+            min-height: 72px;
+
+            background: white;
+
+            padding: 0 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid #e5e5e5;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links a:hover {
+            color: #777;
+        }
+
+
+        .cart-link {
+            background: #111;
+
+            color: white !important;
+
+            padding: 10px 18px;
+
+            border-radius: 22px;
+        }
+
+
+        /* =====================================================
+           CATEGORY HEADER
+        ===================================================== */
+
+        .category-header {
+            width: 88%;
+
+            margin: 35px auto;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 45px;
+
+            text-align: center;
+        }
+
+
+        .breadcrumb {
+            font-size: 13px;
+
+            color: #888;
+
+            margin-bottom: 18px;
+        }
+
+
+        .breadcrumb a {
+            color: #555;
+
+            font-weight: 600;
+        }
+
+
+        .category-header h1 {
+            font-size: 42px;
+
+            margin-bottom: 10px;
+
+            text-transform: capitalize;
+        }
+
+
+        .category-header p {
+            color: #777;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           PRODUCTS
+        ===================================================== */
+
+        .products-section {
+            width: 88%;
+
+            margin: 0 auto 70px;
+        }
+
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+
+        .section-heading h2 {
+            font-size: 28px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .section-heading p {
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .product-card {
+            background: white;
+
+            border:
+                1px solid #eee;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: 0.25s;
+        }
+
+
+        .product-card:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .product-image {
+            width: 100%;
+
+            height: 240px;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #eee;
+        }
+
+
+        .product-info {
+            padding: 18px;
+        }
+
+
+        .product-category {
+            color: #888;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .product-name {
+            font-size: 16px;
+
+            font-weight: 700;
+
+            min-height: 40px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .product-price {
+            font-size: 18px;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-buttons {
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .view-button,
+        .cart-button {
+            flex: 1;
+
+            padding: 11px 8px;
+
+            border-radius: 7px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .view-button {
+            background: white;
+
+            border:
+                1px solid #ddd;
+        }
+
+
+        .view-button:hover {
+            background: #f5f5f5;
+        }
+
+
+        .cart-button {
+            background: #111;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+
+        .cart-button:hover {
+            background: #333;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty {
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+
+        .empty h2 {
+            color: #222;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #111;
+
+            color: white;
+
+            padding: 45px 6%;
+        }
+
+
+        .footer-logo {
+            font-size: 23px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+
+        .footer-text {
+            color: #aaa;
+
+            max-width: 550px;
+
+            line-height: 1.7;
+
+            font-size: 13px;
+        }
+
+
+        .copyright {
+            margin-top: 30px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #333;
+
+            color: #777;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: auto;
+
+                padding: 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .category-header {
+                width: 94%;
+
+                padding: 35px 20px;
+            }
+
+
+            .products-section {
+                width: 94%;
+            }
+
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     OFFER BAR
+===================================================== -->
+
+<div class="offer-bar">
+
+    <div class="offer-track">
+
+        <div class="offer-item">
+            MEGA SALE — UP TO 50% OFF
+        </div>
+
+        <div class="offer-item">
+            FREE SHIPPING ON ORDERS ABOVE ₹999
+        </div>
+
+        <div class="offer-item">
+            NEW USERS GET EXTRA 20% OFF
+        </div>
+
+        <div class="offer-item">
+            ELECTRONICS SALE — LIMITED TIME
+        </div>
+
+        <div class="offer-item">
+            FASHION WEEK — SPECIAL OFFERS
+        </div>
+
+
+        <div class="offer-item">
+            MEGA SALE — UP TO 50% OFF
+        </div>
+
+        <div class="offer-item">
+            FREE SHIPPING ON ORDERS ABOVE ₹999
+        </div>
+
+        <div class="offer-item">
+            NEW USERS GET EXTRA 20% OFF
+        </div>
+
+        <div class="offer-item">
+            ELECTRONICS SALE — LIMITED TIME
+        </div>
+
+        <div class="offer-item">
+            FASHION WEEK — SPECIAL OFFERS
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+
+    <a
+        href="{{ url_for('home') }}"
+        class="logo"
+    >
+        ShopSmart
+    </a>
+
+
+    <div class="nav-links">
+
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+
+        <a
+            href="{{ url_for('home') }}#categories"
+        >
+            Categories
+        </a>
+
+
+        <a
+            href="{{ url_for('home') }}#products"
+        >
+            Products
+        </a>
+
+
+        <a
+            href="{{ url_for('home') }}#recommendations"
+        >
+            Recommendations
+        </a>
+
+
+        {% if session.get("user_id") %}
+
+
+        <a href="{{ url_for('orders') }}">
+            My Orders
+        </a>
+
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+
+        {% else %}
+
+
+        <a href="{{ url_for('login') }}">
+            Login
+        </a>
+
+
+        <a href="{{ url_for('register') }}">
+            Register
+        </a>
+
+
+        {% endif %}
+
+
+        <a
+            href="{{ url_for('cart') }}"
+            class="cart-link"
+        >
+            Cart
+        </a>
+
+
+    </div>
+
+
+</nav>
+
+
+<!-- =====================================================
+     CATEGORY HEADER
+===================================================== -->
+
+<section class="category-header">
+
+
+    <div class="breadcrumb">
+
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+
+        &nbsp; / &nbsp;
+
+
+        {{ category_name }}
+
+
+    </div>
+
+
+    <h1>
+        {{ category_name }} Collection
+    </h1>
+
+
+    <p>
+        Explore our {{ category_name }} products.
+    </p>
+
+
+</section>
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section class="products-section">
+
+
+    <div class="section-heading">
+
+
+        <h2>
+            {{ category_name }} Products
+        </h2>
+
+
+        <p>
+            {{ products|length }} products available
+        </p>
+
+
+    </div>
+
+
+    {% if products %}
+
+
+    <div class="product-grid">
+
+
+        {% for product in products %}
+
+
+        <div class="product-card">
+
+
+            <a
+                href="{{ url_for('product_details', product_id=product['product_id']) }}"
+            >
+
+                <img
+                    class="product-image"
+
+                    src="{{ url_for('static', filename='images/' + product['category']|lower + '.jpg') }}"
+
+                    alt="{{ product['product_name'] }}"
+                >
+
+            </a>
+
+
+            <div class="product-info">
+
+
+                <div class="product-category">
+
+                    {{ product['category'] }}
+
+                </div>
+
+
+                <div class="product-name">
+
+                    {{ product['product_name'] }}
+
+                </div>
+
+
+                <div class="product-price">
+
+                    ₹{{ "%.2f"|format(product['price']) }}
+
+                </div>
+
+
+                <div class="product-buttons">
+
+
+                    <a
+                        href="{{ url_for('product_details', product_id=product['product_id']) }}"
+                        class="view-button"
+                    >
+                        View
+                    </a>
+
+
+                    <form
+                        action="{{ url_for('add_to_cart', product_id=product['product_id']) }}"
+                        method="POST"
+                        style="flex: 1;"
+                    >
+
+                        <button
+                            type="submit"
+                            class="cart-button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="empty">
+
+        <h2>
+            No Products Found
+        </h2>
+
+        <p>
+            There are currently no products
+            available in this category.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-logo">
+        ShopSmart
+    </div>
+
+
+    <p class="footer-text">
+
+        A privacy-aware e-commerce platform
+        demonstrating Differential Privacy,
+        shopping analytics and personalized
+        product recommendations.
+
+    </p>
+
+
+    <div class="copyright">
+
+        © 2026 ShopSmart —
+        Protecting Shopping Preferences
+        with Differential Privacy
+
+    </div>
+
+
+</footer>
+
+
+</body>
+
+</html>

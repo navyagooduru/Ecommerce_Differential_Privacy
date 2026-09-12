@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - ShopSmart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .register-container {
+            width: 400px;
+            margin: 70px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #111;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2864e6;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #2864e6;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background: #1f54c7;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .login-link {
+            color: #2864e6;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Join ShopSmart and start shopping
+        </p>
+
+        <form action="{{ url_for('register') }}" method="POST">
+
+            <label for="name">Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+            >
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+        </form>
+
+        <div class="login-text">
+            Already have an account?
+            <a
+                href="{{ url_for('login') }}"
+                class="login-link"
+            >
+                Login
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
